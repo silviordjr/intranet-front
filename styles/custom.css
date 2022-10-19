@@ -1,0 +1,79 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+.nav-item {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-item:after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0px;
+  background: black;
+  margin-top: 4px;
+  transition: 0.3s;
+  position: absolute;
+}
+
+.nav-item:hover:after {
+  width: 100%;
+}
+
+.nav-item-active:after {
+  width: 100%;
+}
+
+.calendario {
+  border-bottom: 1px double lightblue !important;
+}
+
+.react-calendar__navigation__arrow.react-calendar__navigation__next2-button{
+  display: none;
+}
+
+.react-calendar__navigation__arrow.react-calendar__navigation__prev2-button{
+  display: none;
+}
+
+.set-holiday:before {
+  content: "";
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  background-color: aqua;
+  margin-right: .5rem;
+  border-radius: 50%;
+  margin-left: 1rem;
+}
+
+.set-birth:before {
+  content: "";
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  background-color: lightgreen;
+  margin-right: .5rem;
+  border-radius: 50%;
+  margin-left: 1rem;
+}

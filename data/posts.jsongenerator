@@ -1,0 +1,44 @@
+[
+  '{{repeat(20, 20)}}',
+  {
+    id: '{{guid()}}',
+    date: '{{date(new Date(2020, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
+    slug: function (t) {
+      return t.lorem(1, "sentences").replaceAll(" ", "-").replaceAll(".", "").toLowerCase();
+    },
+    title: '{{lorem(1, "sentences")}}',
+    picture: function (t, i) {
+      var url = 'https://images.unsplash.com/photo-' + t.random('1626183834780-2d2ddee5702d', '1626244297294-c1aecb88f542', '1626186245092-5a7b1ba890a8', '1626184358417-1502f6faf7c9', '1626181378139-9935bab611c8', '1626209614616-28d518b676e5', '1626233127008-5431435e7a57', '1613585574494-200c873926e1', '1626131719997-e216ff236c40') + '?fit=crop&q=80';
+      
+      return {
+        thumbnail: url + '&w=800&h=600',
+        medium: url + '&w=1280&h=720',
+        large: url + '&w=1920&h=1080'
+      };
+    },
+    excerpt: '{{lorem(1, "paragraphs")}}',
+    content: '{{lorem(1, "paragraphs")}}',
+    author: {
+      id: '{{guid()}}',
+      name: '{{firstName()}} {{surname()}}',
+      email: '{{email()}}',
+      company: '{{company().toUpperCase()}}',
+      avatar: 'https://i.pravatar.cc/300',
+      about: '{{lorem(1, "paragraphs")}}'
+    },
+    tags: [
+      '{{repeat(7)}}',
+      '{{lorem(1, "words")}}'
+    ],
+    comments: [
+      '{{repeat(3)}}',
+      {
+        id: '{{guid()}}',
+        name: '{{firstName()}} {{surname()}}',
+        email: '{{email()}}',
+        avatar: 'https://i.pravatar.cc/300',
+        comment: '{{lorem(integer(1, 3), "paragraphs")}}'
+      }
+    ]
+  }
+]
