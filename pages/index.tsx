@@ -24,6 +24,8 @@ import leitura from '../img/sla_original1.png'
 import CalendarCard from "../components/CalendarCard";
 import casal from "../img/casal_favicon.png"
 import lupa from "../img/lupa.png"
+import UserCard from './../components/UserCard';
+import { useRouter } from "next/dist/client/router";
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -47,11 +49,20 @@ const Home: InferGetStaticPropsType<typeof getStaticProps> = ({
 }: {
   postsResponse: PostsResponse
 }) => {
+  const router = useRouter();
+
   const [posts, setPosts] = useState(postsResponse.posts)
   const [hasMore, setHasMore] = useState(postsResponse.hasMore)
   const [isLoading, setIsLoading] = useState(false)
   const [responsiveUserDisplay, setResponsiveUserDisplay] = useState(false);
   const [responsiveLinksDisplay, setResponsiveLinksDisplay] = useState(false);
+
+  const userMock = {
+    name: "Usuário da Intranet da Silva",
+    telefone: "(82)99542-5643",
+    matricula: "06656",
+    email: "usuario.intranet@casal.al.gov.br"
+  }
 
   const fetchMorePosts = async () => {
     setIsLoading(true)
@@ -76,9 +87,9 @@ const Home: InferGetStaticPropsType<typeof getStaticProps> = ({
 
   const userContainerClassName = (): string => {
     if (responsiveUserDisplay) {
-      return ("w-64 h-96 shadow-xl flex flex-col justify-between py-4 px-2")
+      return ("flex flex-col justify-between py-4 px-2")
     } else {
-      return ("w-64 h-96 shadow-xl hidden xl:flex flex-col justify-between py-4 px-2")
+      return ("hidden xl:flex flex-col justify-between py-4 px-2")
     }
   }
 
@@ -151,32 +162,9 @@ const Home: InferGetStaticPropsType<typeof getStaticProps> = ({
         </div>
 
         <div className={mainContainerClassName()}>
-        <div>
+        <div className="flex flex-col items-center justify-center">
         <div className={userContainerClassName()}>
-          <div className="flex flex-col items-center mt-4">
-            <div className="w-20 h-20 rounded-full">
-            <Image
-              src={user}
-              alt={'Foto de perfil do usuario'}
-              layout="fixed"
-              unoptimized={true}
-              height='80%'
-              width='80%'
-              className="rounded-full"
-            />
-            </div>
-            <div className="mt-2 flex flex-col items-center">
-              <p className="font-mono text-xs font-light">usuario.intranet@casal.al.gov.br</p>
-              <p className="font-sans text-base font-medium mt-1">Usuário da Intranet da Silva</p>
-            </div>
-          </div>
-          <div className="flex flex-col justify-between items-start">
-            <p className="font-mono text-xs font-light"> <span className="font-bold">Matrícula:</span> 06656</p>
-            <p className="font-mono text-xs font-light"><span className="font-bold">Telefone:</span> (82)99542-5643</p>
-          </div>
-          <div className="w-fit flex flex-col justify-center items-center">
-          <Link href="/usuarios" passHref><button className="px-2 py-1 rounded bg-gray-300">Buscar Usuários</button></Link>
-          </div>
+          <UserCard key={userMock.matricula} user={userMock} path={router.pathname} />
         </div>
 
         <div className={calendarContainerClassName()}>

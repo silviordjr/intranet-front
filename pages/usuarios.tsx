@@ -3,9 +3,12 @@ import Image from "next/image";
 import lupa from "../img/lupa.png"
 import { useEffect } from 'react';
 import { useState } from 'react';
-import user from "../img/user.jpg"
+import UserCard from "../components/UserCard";
+import { useRouter } from "next/dist/client/router";
 
 export default function Usuarios () {
+    const router = useRouter();
+    
     const [usuarios, setUsuarios] = useState<any[]>([]);
 
     useEffect(() => {
@@ -18,29 +21,7 @@ export default function Usuarios () {
     const displayUserCards = usuarios.map((usuario) => {
         return (
             <>
-            <div className="w-64 h-fit shadow-xl flex flex-col justify-between py-4 px-2">
-                <div className="flex flex-col items-center mt-4">
-                    <div className="w-20 h-20 rounded-full">
-                    <Image
-                    src={user}
-                    alt={'Foto de perfil do usuario'}
-                    layout="fixed"
-                    unoptimized={true}
-                    height='80%'
-                    width='80%'
-                    className="rounded-full"
-                    />
-                    </div>
-                    <div className="mt-2 flex flex-col items-center">
-                    <p className="font-mono text-xs font-light">{usuario.email}</p>
-                    <p className="font-sans text-base font-medium my-4">{usuario.name}</p>
-                    </div>
-                </div>
-                <div className="flex flex-col justify-between items-start">
-                    <p className="font-mono text-xs font-light"> <span className="font-bold">Matrícula:</span> {usuario.matricula}</p>
-                    <p className="font-mono text-xs font-light"><span className="font-bold">Telefone:</span> {usuario.telefone}</p>
-                </div>
-            </div>
+            <UserCard key={usuario.matricula} user={usuario} path={router.pathname} />
             </>
         )
     })
