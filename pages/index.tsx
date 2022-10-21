@@ -192,9 +192,11 @@ const Home: InferGetStaticPropsType<typeof getStaticProps> = ({
               <input type="text" placeholder="Busque uma postagem..." className="font-mono text-xs font-light w-44 bg-gray-300" />
             </div>
           </div>
+          <div className="flex justify-center items-center flex-wrap gap-y-4">
           {posts.map((post) => (
             <PostCard key={post.id} {...post} />
           ))}
+          </div>
         </section>
 
         <div className={linksContainerClassName()}>

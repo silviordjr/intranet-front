@@ -3,17 +3,37 @@ import Link from "next/link";
 import Image from "next/image";
 import logoCasal from '../img/casal_logo.png'
 
-const navigationRoutes = ["home", "about"];
+const navigationRoutes = ["home", "about", "chamados", "acervo", "contato"];
 
 export default function Header () {
   const router = useRouter();
 
   const navigation = navigationRoutes.map((singleRoute) => {
+    let nameOnHeader = ''
+
+    if (singleRoute === 'home') {
+      nameOnHeader = "Página Inicial"
+    }
+    if (singleRoute === 'about') {
+      nameOnHeader = "A Empresa"
+    }
+    if (singleRoute === 'chamados') {
+      nameOnHeader = "Chamados"
+    }
+
+    if(singleRoute === 'acervo'){
+      nameOnHeader = "Acervo"
+    }
+
+    if (singleRoute === 'contato') {
+      nameOnHeader = 'Contato'
+    }
+
     return (
       <NavigationLink
         key={singleRoute}
         href={`/${singleRoute}`}
-        text={singleRoute === "home" ? "Home" : "A Empresa"}
+        text={nameOnHeader}
         router={router}
       />
     )
@@ -52,7 +72,7 @@ function NavigationLink (props: any) {
     <Link href={href === "/home" ? "/" : href} passHref>
       <a 
         href={href === "/home" ? "/" : href}
-        className={`${isActive && "nav-item-active"} nav-item ml-4`}>
+        className={`${isActive && "nav-item-active"} nav-item ml-8`}>
           {text}
         </a>
     </Link>
