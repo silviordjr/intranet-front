@@ -7,7 +7,7 @@ export default function UserCard (props: any) {
         return(
             <>
             <div className="w-fit flex flex-col justify-center items-center mt-8">
-                <Link href="/usuarios" passHref><button className="px-2 py-1 rounded bg-gray-300">Buscar Usuários</button></Link>
+                <Link href="/usuarios" passHref><button className="px-2 py-1 rounded bg-gray-300 hover:bg-gray-400">Buscar Usuários</button></Link>
             </div>
             </>
         )

@@ -5,8 +5,11 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import UserCard from "../components/UserCard";
 import { useRouter } from "next/dist/client/router";
+import useProtectedPage from './../hooks/useProtectedPage';
 
 export default function Usuarios () {
+    useProtectedPage()
+    
     const router = useRouter();
     
     const [usuarios, setUsuarios] = useState<any[]>([]);

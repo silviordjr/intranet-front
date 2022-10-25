@@ -26,6 +26,7 @@ import casal from "../img/casal_favicon.png"
 import lupa from "../img/lupa.png"
 import UserCard from './../components/UserCard';
 import { useRouter } from "next/dist/client/router";
+import useProtectedPage from "../hooks/useProtectedPage";
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -49,6 +50,7 @@ const Home: InferGetStaticPropsType<typeof getStaticProps> = ({
 }: {
   postsResponse: PostsResponse
 }) => {
+  useProtectedPage()
   const router = useRouter();
 
   const [posts, setPosts] = useState(postsResponse.posts)
@@ -174,12 +176,12 @@ const Home: InferGetStaticPropsType<typeof getStaticProps> = ({
         </div>
 
         <section className="mb-10 flex flex-col space-y-10 max-w-screen-sm">
-          <div className="flex justify-around items-center">
+          <div className="flex flex-col lg:flex-row justify-around items-center">
             <div>
-            <button className="px-2 py-1 font-mono text-xs font-light rounded-full bg-gray-300 mr-4">Ver Tudo</button>
-            <button className="px-2 py-1 font-mono text-xs font-light rounded-full bg-gray-300">Publicações da ASCOM</button>
+              <button className="xl:px-2 xl:py-1 py-4 px-4 font-mono text-xs font-light rounded-full bg-gray-300 mr-4 hover:bg-gray-400">Ver Tudo</button>
+              <button className="xl:px-2 xl:py-1 py-4 px-4 font-mono text-xs font-light rounded-full bg-gray-300 hover:bg-gray-400">Publicações da ASCOM</button>
             </div>
-            <div className="rounded-full bg-gray-300 w-56 px-2 py-1 flex justify-between  items-center">
+            <div className="rounded-full bg-gray-300 w-56 xl:px-2 xl:py-1 py-4 px-4 mt-4 lg:mt-0 flex justify-between  items-center">
             <Image
                 src={lupa}
                 alt={'Icone Lupa'}
@@ -201,135 +203,163 @@ const Home: InferGetStaticPropsType<typeof getStaticProps> = ({
 
         <div className={linksContainerClassName()}>
           <h3 className="font-sans text-base font-medium mt-1 mb-8">Links Uteis</h3>
-        <div className="flex justify-around items-start flex-wrap gap-y-12">
-        <Image
-        src={consultaRegistro}
-        alt={'Logo consulta registro'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={registroHomeOffice}
-        alt={'Logo home office'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={googleWorkspace}
-        alt={'Logo google workspace'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={gesan1}
-        alt={'Logo gesan'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={gesan2}
-        alt={'Logo gesan'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={redmine}
-        alt={'Logo redmine'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={pentaho}
-        alt={'Logo pentaho'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={leitura}
-        alt={'Logo sistema leitura de agua'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={certificado}
-        alt={'Logo sistema certificado digital'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={sigmetro}
-        alt={'Logo sigmetro'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={contracheque}
-        alt={'Logo contracheque'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={situacao}
-        alt={'Logo sala de situação'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={snis}
-        alt={'Logo snis'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
-      <Image
-        src={sei}
-        alt={'Logo sei'}
-        layout="fixed"
-        unoptimized={true}
-        height='55%'
-        width='75%'
-        className=""
-      />
+          <div className="flex justify-around items-start flex-wrap gap-y-12">
+            <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+              <Image
+                src={consultaRegistro}
+                alt={'Logo consulta registro'}
+                layout="fixed"
+                unoptimized={true}
+                height='55%'
+                width='75%'
+                className=""
+              />
+            </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={registroHomeOffice}
+              alt={'Logo home office'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={googleWorkspace}
+              alt={'Logo google workspace'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={gesan1}
+              alt={'Logo gesan'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={gesan2}
+              alt={'Logo gesan'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={redmine}
+              alt={'Logo redmine'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={pentaho}
+              alt={'Logo pentaho'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={leitura}
+              alt={'Logo sistema leitura de agua'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={certificado}
+              alt={'Logo sistema certificado digital'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={sigmetro}
+              alt={'Logo sigmetro'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={contracheque}
+              alt={'Logo contracheque'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={situacao}
+              alt={'Logo sala de situação'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={snis}
+              alt={'Logo snis'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
+          <div className="cursor-pointer hover:bg-gray-200 p-4 rounded-lg">
+            <Image
+              src={sei}
+              alt={'Logo sei'}
+              layout="fixed"
+              unoptimized={true}
+              height='55%'
+              width='75%'
+              className=""
+            />
+          </div>
         </div>
-        </div>
+      </div>
 
         </div>
 

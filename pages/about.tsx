@@ -1,6 +1,9 @@
 import Head from "next/head";
+import useProtectedPage from './../hooks/useProtectedPage';
 
 export default function About () {
+    useProtectedPage()
+    
     return (
         <>
         <Head>

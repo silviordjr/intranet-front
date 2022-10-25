@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Comments from "../../components/Comments";
 import Loading from "../../components/Loading";
 import { Post } from './../api/posts';
+import useProtectedPage from './../../hooks/useProtectedPage';
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -19,6 +20,8 @@ const getPost = async (id: string | string []) => {
 }
 
 export default function PostPage () {
+    useProtectedPage()
+    
     const router = useRouter();
     const id = router.query.pid;
     const [post, setPost] = useState<Post>()
@@ -56,8 +59,10 @@ export default function PostPage () {
             <meta name="description" content="Intranet da Companhia de Saneamento de Alagoas" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        {isLoading ? <Loading /> :
-        <main className="px-4 lg:px-0 max-w-screen-md mx-auto my-10">
+        <main className="px-4 lg:px-0 max-w-screen-md mx-auto my-10 min-h-screen">
+            {isLoading ? 
+            <div className="min-h-screen flex items-center justify-center"><Loading /></div> :
+            <>
             <section>
                 <div className="flex md:flex-row flex-col justify-start items-center">
                     <div className="flex flex-col justify-between items-center">
@@ -119,8 +124,9 @@ export default function PostPage () {
                 {listComment}
             </div>
             </section>
-        </main>
+            </>
         }
+        </main>
         </>
     )
 }

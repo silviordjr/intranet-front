@@ -1,6 +1,9 @@
 import Head from "next/head";
+import useProtectedPage from './../hooks/useProtectedPage';
 
 export default function Chamados () {
+    useProtectedPage()
+    
     return (
         <>
             <Head>
@@ -8,7 +11,7 @@ export default function Chamados () {
                 <meta name="description" content="Intranet da Companhia de Saneamento de Alagoas" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="flex flex-col justify-around items-start h-screen px-4 lg:px-0 max-w-screen-xl mx-auto my-10">
+            <main className="flex flex-col justify-around items-start min-h-screen px-4 lg:px-0 max-w-screen-xl mx-auto my-10">
                 <div className="flex justify-between items-start flex-wrap gap-8 text-center font-mono text-lg font-light">
                     <div className="w-80 h-40 shadow-xl rounded-full flex flex-col items-center justify-around py-4 px-8 cursor-pointer">
                         <p>Denúncia</p>
